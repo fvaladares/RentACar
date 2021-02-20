@@ -13,7 +13,7 @@ class WebClient {
 
     companion object {
 
-        fun getRetrofitInstance(url: String): Retrofit {
+        fun getRetrofitInstance(): Retrofit {
             return Retrofit.Builder().baseUrl(endPointUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

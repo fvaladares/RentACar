@@ -123,8 +123,5 @@ class SelectDateFragment : Fragment() {
     companion object {
         private const val TAG = "SelectDateFragment"
 
-        @JvmStatic
-        fun newInstance() =
-            SelectDateFragment()
     }
 }

@@ -5,7 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.localizalabsacademy.mobile.rentacar.repository.RentACarRepositoryImpl
 import com.localizalabsacademy.mobile.rentacar.util.HourSource
+import com.localizalabsacademy.mobile.rentacar.webapi.RentACarServices
+import com.localizalabsacademy.mobile.rentacar.webapi.WebClient
 import kotlinx.coroutines.launch
 import java.math.BigDecimal
 import java.util.*
@@ -59,6 +62,15 @@ class RentViewModel : ViewModel() {
     private var _isPickup = true
     var isPickup = _isPickup
 
+//    private val searchService =
+//        WebClient
+//            .getRetrofitInstance()
+//            .create(RentACarServices::class.java)
+
+    private val _searchService =
+        WebClient.getRetrofitInstance()
+            .create(RentACarServices::class.java)
+    private val searchService = _searchService
 
     private fun setPickupLocation(pickupLocation: String) {
         _pickupLocation.value = pickupLocation
@@ -204,7 +216,12 @@ class RentViewModel : ViewModel() {
                 "Searching for agencies at the web server"
             )
 
-//            val response = itemRepository.search(query)
+            val repository = RentACarRepositoryImpl()
+
+//            repository.searchAgencies()
+            val response = searchService?.getAllAgencies()
+
+            Log.e("JSON", response.toString())
 
 
             Log.d(

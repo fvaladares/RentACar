@@ -62,6 +62,15 @@ class SelectAgencyFragment : Fragment() {
         findNavController().navigate(R.id.action_selectAgencyFragment_to_startFragment)
     }
 
+    fun getAgencies() {
+        Log.w("RENT_SelectAgencyF", "getAgencies(): -> Starting")
+
+        val result = sharedViewModel.searchAgenciesWS("")
+
+        Log.w("RENT_SelectAgencyF", "getAgencies(): Result -> $result")
+        Log.w("RENT_SelectAgencyF", "getAgencies(): -> finishing")
+    }
+
 //
 //    fun setAgencyLocation(location: String) {
 //        sharedViewModel.setLocation(location)
