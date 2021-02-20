@@ -13,13 +13,14 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/std_margin">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_gravity="center_vertical"
-            android:layout_margin="@dimen/std_margin"
+
             tools:context=".ui.SelectAgencyFragment">
 
             <com.google.android.material.textview.MaterialTextView
@@ -35,9 +36,11 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/agency_tv_phone"
                 android:layout_width="0dp"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="8dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:paddingHorizontal="16dp"
+                android:paddingHorizontal="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/agency_tv_name"
