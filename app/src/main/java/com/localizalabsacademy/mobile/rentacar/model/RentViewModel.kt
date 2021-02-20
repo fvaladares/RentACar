@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.localizalabsacademy.mobile.rentacar.repository.RentACarRepositoryImpl
 import com.localizalabsacademy.mobile.rentacar.util.HourSource
-import com.localizalabsacademy.mobile.rentacar.webapi.RentACarServices
-import com.localizalabsacademy.mobile.rentacar.webapi.WebClient
+import com.localizalabsacademy.mobile.rentacar.webapi.WebService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.math.BigDecimal
 import java.util.*
 
@@ -62,15 +62,12 @@ class RentViewModel : ViewModel() {
     private var _isPickup = true
     var isPickup = _isPickup
 
-//    private val searchService =
-//        WebClient
-//            .getRetrofitInstance()
-//            .create(RentACarServices::class.java)
 
-    private val _searchService =
-        WebClient.getRetrofitInstance()
-            .create(RentACarServices::class.java)
-    private val searchService = _searchService
+    private val services = WebService()
+    val _agencies = MutableLiveData<List<Agency>>()
+    val agencies: LiveData<List<Agency>>
+        get() = _agencies
+
 
     private fun setPickupLocation(pickupLocation: String) {
         _pickupLocation.value = pickupLocation
@@ -210,25 +207,34 @@ class RentViewModel : ViewModel() {
 
 
     fun searchAgenciesWS(query: String) {
-        viewModelScope.launch {
-            Log.d(
-                "RENT_ViewModel",
-                "Searching for agencies at the web server"
-            )
+        Log.d(
+            "RENT_ViewModel",
+            "Searching for agencies at the web server"
+        )
 
-            val repository = RentACarRepositoryImpl()
+        viewModelScope.launch(Dispatchers.IO) {
 
-//            repository.searchAgencies()
-            val response = searchService?.getAllAgencies()
+            try {
+                val res = services.getAgencies()
+                if (res.isSuccessful) {
+                    withContext(Dispatchers.Main) {
+                        _agencies.value = res.body()
+                    }
+                    Log.e("CODIGO: ", res.message())
+                    Log.w("JSON", "${agencies.value}")
+                } else {
+                    Log.e("FGV", "Deu merda! + ${res.code()}")
+                }
+            } catch (e: Exception) {
+                Log.e("FALHOU!!", e.stackTraceToString())
+            }
 
-            Log.e("JSON", response.toString())
 
-
-            Log.d(
-                "RENT_ViewModel",
-                "End of method >> Searching for agencies at the web server"
-            )
         }
+        Log.d(
+            "RENT_ViewModel",
+            "End of method >> Searching for agencies at the web server"
+        )
     }
 
 }
