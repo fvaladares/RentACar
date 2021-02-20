@@ -20,7 +20,8 @@ class ItemHourAdapter(
     RecyclerView.Adapter<ItemHourAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView = view.findViewById(R.id.item_tv)
+//        val mark: RadioButton = view.findViewById(R.id.item)
+val textView: TextView = view.findViewById(R.id.item_tv)
     }
 
     override fun onCreateViewHolder(

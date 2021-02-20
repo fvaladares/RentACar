@@ -91,9 +91,13 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/start_tv_pickup_date"
                 android:layout_width="match_parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_arrow_forward"
                 android:drawablePadding="8dp"
+                android:outlineAmbientShadowColor="@color/primaryColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:onClick="@{() -> startFragment.goToCalendarScreen(true)}"
                 android:text="@string/pickup_date"
                 app:layout_constraintBottom_toTopOf="@id/start_tv_selected_pickup_date"
@@ -103,7 +107,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/start_tv_selected_pickup_date"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="?attr/textAppearanceBody1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
@@ -124,6 +128,10 @@
                 android:layout_marginVertical="8dp"
                 android:drawableStart="@drawable/ic_arrow_back"
                 android:drawablePadding="8dp"
+                style="?attr/textAppearanceBody1"
+                android:outlineAmbientShadowColor="@color/primaryColor"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 android:onClick="@{() -> startFragment.goToCalendarScreen(false)}"
                 android:text="@string/return_date"
                 android:visibility="@{viewModel.pickupDateHour.time == 0L ? View.GONE : View.VISIBLE }"
