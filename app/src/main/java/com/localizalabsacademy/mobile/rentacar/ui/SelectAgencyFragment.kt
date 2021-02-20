@@ -8,14 +8,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.localizalabsacademy.mobile.rentacar.R
+import com.localizalabsacademy.mobile.rentacar.adapter.AgencyAdapter
 import com.localizalabsacademy.mobile.rentacar.databinding.FragmentSelectAgencyBinding
 import com.localizalabsacademy.mobile.rentacar.model.RentViewModel
 
 
 class SelectAgencyFragment : Fragment() {
 
+    val agencyAdapter = AgencyAdapter(arrayListOf())
     private var binding: FragmentSelectAgencyBinding? = null
 
     //    private val sharedViewModel: RentViewModel by viewModel()
@@ -46,10 +49,19 @@ class SelectAgencyFragment : Fragment() {
             selectAgencyFragment = this@SelectAgencyFragment
             viewModel = sharedViewModel
             lifecycleOwner = viewLifecycleOwner
-//            selectBtnAgencyOk.setOnClickListener {
-//                sharedViewModel.setLocation(selectAgencyEtAgencyName.text.toString())
-//                Toast.makeText(context, "Botao acionado", Toast.LENGTH_SHORT).show()
-//            }
+            selectAgencyRv.apply {
+                sharedViewModel.agencies.value?.let {
+                    agencyAdapter
+                }
+                this.layoutManager = layoutManager
+                setHasFixedSize(true)
+                sharedViewModel.agencies.observe(lifecycleOwner!!, Observer { agencies ->
+                    agencies?.let {
+                        agencyAdapter.update(it)
+                        Log.e("RECYCLER", it.toString())
+                    }
+                })
+            }
         }
     }
 
@@ -65,9 +77,27 @@ class SelectAgencyFragment : Fragment() {
     fun getAgencies() {
         Log.w("RENT_SelectAgencyF", "getAgencies(): -> Starting")
 
-        val result = sharedViewModel.searchAgenciesWS("")
+        sharedViewModel.searchAgenciesWS("")
 
-        Log.w("RENT_SelectAgencyF", "getAgencies(): Result -> $result")
+
+
+
+
+        binding!!.selectAgencyRv.apply {
+            adapter = sharedViewModel.agencies.value?.let {
+                agencyAdapter
+            }
+
+
+            sharedViewModel.agencies.observe(this@SelectAgencyFragment, Observer { agencies ->
+                agencies?.let {
+                    agencyAdapter.update(it)
+                    Log.e("RECYCLER", it.toString())
+                }
+            })
+        }
+
+
         Log.w("RENT_SelectAgencyF", "getAgencies(): -> finishing")
     }
 
