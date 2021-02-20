@@ -1,3 +1,10 @@
 package com.localizalabsacademy.mobile.rentacar.repository
 
-class RentACarRepositoryImpl
+import com.localizalabsacademy.mobile.rentacar.model.Agency
+
+class RentACarRepositoryImpl : RentACarRepository {
+    override suspend fun searchAgencies(query: String): List<Agency> {
+        return searchAgencies(query)
+    }
+
+}

@@ -56,7 +56,7 @@ class SelectAgencyFragment : Fragment() {
     /**
      * Navigate back to [StartFragment]
      */
-    fun returnStartFragment() {
+    fun returnToStartFragment() {
         sharedViewModel.setLocation(binding!!.selectAgencyEtAgencyName.text.toString())
         Toast.makeText(context, "Botao acionado", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_selectAgencyFragment_to_startFragment)

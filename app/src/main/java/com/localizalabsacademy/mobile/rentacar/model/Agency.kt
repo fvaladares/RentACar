@@ -1,6 +1,6 @@
 package com.localizalabsacademy.mobile.rentacar.model
 
-class Agency(
+data class Agency(
     val id: String,
     val name: String,
     val phone: String,
