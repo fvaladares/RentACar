@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.widget.CalendarView" />
+
+        <variable
+            name="selectDateFragment"
+            type="com.localizalabsacademy.mobile.rentacar.ui.SelectDateFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.localizalabsacademy.mobile.rentacar.model.RentViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/std_margin"
+            tools:context=".ui.SelectDateFragment">
+
+
+            <CalendarView
+                android:id="@+id/date_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minDate="@{selectDateFragment.setMinDate()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/date_btn_cancel"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:onClick="@{()->selectDateFragment.cancelAction()}"
+                android:text="@string/cancel"
+                app:layout_constraintEnd_toStartOf="@id/date_btn_ok"
+                app:layout_constraintTop_toBottomOf="@id/date_calendar" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/date_btn_ok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> selectDateFragment.okButtonAction()}"
+                android:text="@string/ok"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_calendar" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</layout>
