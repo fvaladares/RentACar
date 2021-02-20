@@ -25,6 +25,8 @@
                 android:id="@+id/item_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 android:gravity="center"
                 android:minHeight="20dp"
                 android:textSize="18sp"

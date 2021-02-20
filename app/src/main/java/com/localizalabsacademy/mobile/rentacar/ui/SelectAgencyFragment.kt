@@ -58,7 +58,7 @@ class SelectAgencyFragment : Fragment() {
                 sharedViewModel.agencies.observe(lifecycleOwner!!, Observer { agencies ->
                     agencies?.let {
                         agencyAdapter.update(it)
-                        Log.e("RECYCLER", it.toString())
+                        Log.d("RECYCLER", it.toString())
                     }
                 })
             }
@@ -77,7 +77,9 @@ class SelectAgencyFragment : Fragment() {
     fun getAgencies() {
         Log.w("RENT_SelectAgencyF", "getAgencies(): -> Starting")
 
-        sharedViewModel.searchAgenciesWS("")
+        sharedViewModel.searchAgenciesWS()
+
+//        Log.e("TESTE", sharedViewModel.returnAgencies().toString())
 
         Log.w("RENT_SelectAgencyF", "getAgencies(): -> finishing")
     }

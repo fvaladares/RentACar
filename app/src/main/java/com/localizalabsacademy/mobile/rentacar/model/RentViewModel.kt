@@ -68,7 +68,11 @@ class RentViewModel : ViewModel() {
     val agencies: LiveData<List<Agency>> = _agencies
 
 
-    fun returnAgencies(): List<Agency> = agencies.value!!
+    fun returnAgencies(): List<Agency> {
+        Log.e("RENT_rentviewmodel", "agencies ...\n${agencies.value}")
+        return agencies.value!!
+    }
+
     private fun setPickupLocation(pickupLocation: String) {
         _pickupLocation.value = pickupLocation
     }
@@ -172,7 +176,7 @@ class RentViewModel : ViewModel() {
 
 
     // This method returns all agencies at data set.
-    fun searchAgenciesWS(query: String) {
+    fun searchAgenciesWS() {
         Log.d(
             "RENT_ViewModel",
             "Searching for agencies at the web server"
@@ -186,8 +190,8 @@ class RentViewModel : ViewModel() {
                     withContext(Dispatchers.Main) {
                         _agencies.value = res.body()
                     }
-                    Log.e("JSON", agencies.value.toString())
-                    Log.e("CODIGO: ", res.message())
+                    Log.d("JSON", agencies.value.toString())
+                    Log.d("CODIGO: ", res.message())
                 } else {
                     Log.e("FGV", "Deu merda! + ${res.code()}")
                 }
