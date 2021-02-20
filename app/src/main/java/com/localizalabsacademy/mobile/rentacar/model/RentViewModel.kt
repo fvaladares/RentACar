@@ -65,10 +65,10 @@ class RentViewModel : ViewModel() {
 
     private val services = WebService()
     private val _agencies = MutableLiveData<List<Agency>>()
-    val agencies: LiveData<List<Agency>>
-        get() = _agencies
+    val agencies: LiveData<List<Agency>> = _agencies
 
 
+    fun returnAgencies(): List<Agency> = agencies.value!!
     private fun setPickupLocation(pickupLocation: String) {
         _pickupLocation.value = pickupLocation
     }
@@ -120,23 +120,6 @@ class RentViewModel : ViewModel() {
                 setReturnLocation(location)
             }
         }
-
-
-//        val stringTest = "Where do you want to pick-up your car?"
-//        if (questionLocation.value
-//                .toString().equals(stringTest)
-//        ) {
-//            if (!pickupLocation.value.isNullOrBlank()) {
-//                _returnLocation.value = location
-//            }
-//            setPickupLocation(location)
-//            if (pickupEqualsToReturn.value == true) {
-//                setReturnLocation(location)
-//            }
-//
-//        } else {
-//            setReturnLocation(location)
-//        }
     }
 
 
@@ -151,24 +134,6 @@ class RentViewModel : ViewModel() {
             else -> returnLocation.value.toString()
         }
     }
-
-
-//        when (questionLocation.value) {
-//
-//        "Where do you want to pick-up your car?" ->
-//
-//            when (pickupLocation.value) {
-//                null -> ""
-//                else -> pickupLocation.value.toString()
-//            }
-//        "Where do you want to return your car?" ->
-//            when (returnLocation.value) {
-//                null -> ""
-//                else -> returnLocation.value.toString()
-//            }
-//        else -> ""
-//    }
-
 
     fun setLocationQuestion(questionLocation: String) {
         _questionLocation.value = questionLocation

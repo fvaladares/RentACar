@@ -79,25 +79,6 @@ class SelectAgencyFragment : Fragment() {
 
         sharedViewModel.searchAgenciesWS("")
 
-
-
-
-
-        binding!!.selectAgencyRv.apply {
-            adapter = sharedViewModel.agencies.value?.let {
-                agencyAdapter
-            }
-
-
-            sharedViewModel.agencies.observe(this@SelectAgencyFragment, Observer { agencies ->
-                agencies?.let {
-                    agencyAdapter.update(it)
-                    Log.e("RECYCLER", it.toString())
-                }
-            })
-        }
-
-
         Log.w("RENT_SelectAgencyF", "getAgencies(): -> finishing")
     }
 
