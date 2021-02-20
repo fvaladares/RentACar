@@ -1,6 +1,5 @@
 package com.localizalabsacademy.mobile.rentacar.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,21 +7,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.localizalabsacademy.mobile.rentacar.R
 import com.localizalabsacademy.mobile.rentacar.model.Agency
-import com.localizalabsacademy.mobile.rentacar.model.RentViewModel
-import com.localizalabsacademy.mobile.rentacar.ui.SelectAgencyFragment
 
 
 class AgencyAdapter(
-    private val items: List<Agency>,
-    private val context: Context,
-    private val viewModel: RentViewModel,
-    private val view: SelectAgencyFragment,
-) : RecyclerView.Adapter<AgencyAdapter.AgencyAdapterViewHolder>() {
+    private val items: ArrayList<Agency>,
+
+    ) : RecyclerView.Adapter<AgencyAdapter.AgencyAdapterViewHolder>() {
 
 
     class AgencyAdapterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textViewName: MaterialTextView = view.findViewById(R.id.agency_tv_name)
         val textViewPhone: MaterialTextView = view.findViewById(R.id.agency_tv_phone)
+
+        fun bind(agency: Agency) {
+            textViewName.text = agency.name
+            textViewPhone.text = agency.phone
+        }
+    }
+
+    fun update(agencies: List<Agency>) {
+        items.clear()
+        items.addAll(agencies)
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgencyAdapterViewHolder {
@@ -32,9 +38,10 @@ class AgencyAdapter(
     }
 
     override fun onBindViewHolder(holder: AgencyAdapterViewHolder, position: Int) {
-        val item = items[position]
-        holder.textViewName.text = item.name
-        holder.textViewPhone.text = item.phone
+        holder.bind(items[position])
+//        val item = items[position]
+//        holder.textViewName.text = item.name
+//        holder.textViewPhone.text = item.phone
     }
 
     override fun getItemCount(): Int = items.size
