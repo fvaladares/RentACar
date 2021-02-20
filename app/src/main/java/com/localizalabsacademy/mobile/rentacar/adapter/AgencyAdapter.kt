@@ -60,6 +60,10 @@ class AgencyAdapter(
             if (item != null) {
                 textViewName.text = item.name
                 textViewPhone.text = item.phone
+
+//                textViewName.setOnClickListener {
+//                    viewModel.setHourForPickupOrReturn(position)
+//                    view.pickHour()
             }
 
         }

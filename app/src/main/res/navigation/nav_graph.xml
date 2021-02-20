@@ -31,6 +31,7 @@
         <action
             android:id="@+id/action_selectAgencyFragment_to_startFragment"
             app:destination="@id/startFragment"
+            app:popUpTo="@id/startFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment

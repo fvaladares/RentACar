@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.localizalabsacademy.mobile.rentacar.R
@@ -20,8 +21,8 @@ class ItemHourAdapter(
     RecyclerView.Adapter<ItemHourAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-//        val mark: RadioButton = view.findViewById(R.id.item)
-val textView: TextView = view.findViewById(R.id.item_tv)
+        val mark: RadioButton = view.findViewById(R.id.radioButton_item_hour)
+        val textView: TextView = view.findViewById(R.id.item_tv)
     }
 
     override fun onCreateViewHolder(
