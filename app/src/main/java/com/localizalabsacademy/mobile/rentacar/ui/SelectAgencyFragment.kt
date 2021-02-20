@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.localizalabsacademy.mobile.rentacar.R
+import com.localizalabsacademy.mobile.rentacar.adapter.AgencyAdapter
 import com.localizalabsacademy.mobile.rentacar.databinding.FragmentSelectAgencyBinding
 import com.localizalabsacademy.mobile.rentacar.model.RentViewModel
 
@@ -46,10 +47,6 @@ class SelectAgencyFragment : Fragment() {
             selectAgencyFragment = this@SelectAgencyFragment
             viewModel = sharedViewModel
             lifecycleOwner = viewLifecycleOwner
-//            selectBtnAgencyOk.setOnClickListener {
-//                sharedViewModel.setLocation(selectAgencyEtAgencyName.text.toString())
-//                Toast.makeText(context, "Botao acionado", Toast.LENGTH_SHORT).show()
-//            }
         }
     }
 
@@ -65,9 +62,24 @@ class SelectAgencyFragment : Fragment() {
     fun getAgencies() {
         Log.w("RENT_SelectAgencyF", "getAgencies(): -> Starting")
 
-        val result = sharedViewModel.searchAgenciesWS("")
+        sharedViewModel.searchAgenciesWS("")
 
-        Log.w("RENT_SelectAgencyF", "getAgencies(): Result -> $result")
+
+
+        binding!!.selectAgencyRv.apply {
+            adapter = sharedViewModel.agencies.value?.let {
+                AgencyAdapter(
+                    it,
+                    context,
+                    sharedViewModel,
+                    this@SelectAgencyFragment
+                )
+            }
+            this.layoutManager = layoutManager
+            setHasFixedSize(true)
+        }
+
+
         Log.w("RENT_SelectAgencyF", "getAgencies(): -> finishing")
     }
 

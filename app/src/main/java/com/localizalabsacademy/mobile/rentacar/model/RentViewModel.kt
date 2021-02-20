@@ -64,7 +64,7 @@ class RentViewModel : ViewModel() {
 
 
     private val services = WebService()
-    val _agencies = MutableLiveData<List<Agency>>()
+    private val _agencies = MutableLiveData<List<Agency>>()
     val agencies: LiveData<List<Agency>>
         get() = _agencies
 
@@ -206,6 +206,7 @@ class RentViewModel : ViewModel() {
     }
 
 
+    // This method returns all agencies at data set.
     fun searchAgenciesWS(query: String) {
         Log.d(
             "RENT_ViewModel",
@@ -220,16 +221,14 @@ class RentViewModel : ViewModel() {
                     withContext(Dispatchers.Main) {
                         _agencies.value = res.body()
                     }
+                    Log.e("JSON", agencies.value.toString())
                     Log.e("CODIGO: ", res.message())
-                    Log.w("JSON", "${agencies.value}")
                 } else {
                     Log.e("FGV", "Deu merda! + ${res.code()}")
                 }
             } catch (e: Exception) {
                 Log.e("FALHOU!!", e.stackTraceToString())
             }
-
-
         }
         Log.d(
             "RENT_ViewModel",
