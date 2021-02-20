@@ -23,13 +23,23 @@ class ItemHourAdapter(
         val textView: TextView = view.findViewById(R.id.item_tv)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ItemViewHolder {
         val adapterLayoutInflater = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_hour, parent, false)
+            .inflate(
+                R.layout.list_item_hour,
+                parent,
+                false
+            )
         return ItemViewHolder(adapterLayoutInflater)
     }
 
-    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ItemViewHolder,
+        position: Int,
+    ) {
         val item = dataSet[position]
         holder.textView.text = item.toString()
         holder.textView.setOnClickListener {

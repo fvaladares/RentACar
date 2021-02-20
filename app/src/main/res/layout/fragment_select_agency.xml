@@ -34,6 +34,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/select_agency_et_agencyName"
                 android:layout_width="match_parent"
+                android:maxLines="1"
                 android:layout_height="wrap_content"
                 android:text="@{viewModel.getLocation(), default=my_default}" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -51,6 +52,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_gps"
+            android:textColor="@color/primaryColor"
+            android:textStyle="bold"
             android:drawablePadding="8dp"
             android:onClick="@{() -> selectAgencyFragment.getAgencies() }"
             android:text="@string/use_my_current_location"
@@ -60,10 +63,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/select_agency_rv"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/select_agency_gps" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_agency_gps"
+            tools:listitem="@layout/list_item_agency" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/select_btn_agency_ok"

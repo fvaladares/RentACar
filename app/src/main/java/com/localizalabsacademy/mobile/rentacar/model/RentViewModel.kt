@@ -64,8 +64,8 @@ class RentViewModel : ViewModel() {
 
 
     private val services = WebService()
-    private val _agencies = MutableLiveData<List<Agency>>()
-    val agencies: LiveData<List<Agency>> = _agencies
+    private val _agencies = MutableLiveData<MutableList<Agency>>()
+    val agencies: LiveData<MutableList<Agency>> = _agencies
 
 
     fun returnAgencies(): List<Agency> {
