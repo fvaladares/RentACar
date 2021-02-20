@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.localizalabsacademy.mobile.rentacar.model.RentViewModel" />
+
     </data>
 
     <androidx.cardview.widget.CardView

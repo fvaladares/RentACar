@@ -46,27 +46,3 @@ class AgencyAdapter(
 
     override fun getItemCount(): Int = items.size
 }
-
-
-//
-//class AgencyAdapter(private val items: ArrayList<Agency>) :
-//    RecyclerView.Adapter<AgencyAdapter.ViewHolder>() {
-//
-//    class ViewHolder: RecyclerView.ViewHolder(val binding: Agenc) {
-//
-//    }
-//
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AgencyAdapter.ViewHolder {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun onBindViewHolder(holder: AgencyAdapter.ViewHolder, position: Int) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getItemCount(): Int {
-//        TODO("Not yet implemented")
-//    }
-//
-//}
-//
